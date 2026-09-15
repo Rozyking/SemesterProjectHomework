@@ -11,4 +11,16 @@ public class DaggerheartController : Controller
         return View(DaggerheartCharacterData.All);
     }
 
+    public IActionResult Details(int id)
+    {
+        var character = DaggerheartCharacterData.All.FirstOrDefault(t => t.Id == id);
+
+        if (character == null)
+        {
+            return NotFound();  // Honest 404 from bad index
+        }
+
+        return View(character);
+    }
+
 }
