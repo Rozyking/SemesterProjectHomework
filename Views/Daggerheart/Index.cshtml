@@ -1,0 +1,12 @@
+@using Models
+@model List<DaggerheartCharacter>
+
+<p>@Model.Count characters in party.</p>
+
+<table>
+    @foreach (var character in Model)
+    {
+        <tr>@character.Name — @character.Class; HP: @character.HitPoints; Evasion: @character.Evasion; <a href="/Cryptids/Details/@character.Id">Details</a></tr>
+        <br>
+    }
+</table>
