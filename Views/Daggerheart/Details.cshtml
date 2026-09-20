@@ -1,6 +1,10 @@
 @using Models
 @model DaggerheartCharacter
 
+@{
+    ViewData["Title"] = Model.Name;
+}
+
 <h2>@Model.Name -- @Model.Class</h2>
 <p>HP: @Model.HitPoints</p>
 <p>Evasion: @Model.Evasion</p>
