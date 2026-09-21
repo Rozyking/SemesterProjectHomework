@@ -8,9 +8,16 @@
 <p>@Model.Count characters in party.</p>
 
 <table>
-    @foreach (var character in Model)
-    {
-        <tr>@character.Name — @character.Class; HP: @character.HitPoints; Evasion: @character.Evasion; <a href="/Daggerheart/Details/@character.Id">Details</a></tr>
-        <br>
-    }
+    <div class="row">
+        
+        @foreach (var character in Model)
+        {
+            <div class="col-lg-4 mb-3">
+            
+                <partial name="_CharacterCard" model="character" />
+            
+            </div>
+        }
+        
+    </div>
 </table>
