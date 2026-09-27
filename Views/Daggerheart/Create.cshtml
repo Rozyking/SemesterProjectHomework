@@ -1,0 +1,39 @@
+@model DaggerheartCharacter
+@{
+    ViewData["Title"] = "Create a Character";
+}
+
+<h1>Create a character</h1>
+<p class="text-muted">Add a new character to your Daggerheart Party!</p>
+
+<form asp-action="Create" method="post" class="col-md-6">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Class" class="form-label"></label>
+        <input asp-for="Class" class="form-control" />
+        <span asp-validation-for="Class" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="HitPoints" class="form-label"></label>
+        <input asp-for="HitPoints" class="form-control" />
+        <span asp-validation-for="HitPoints" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Evasion" class="form-label"></label>
+        <input asp-for="Evasion" class="form-control" />
+        <span asp-validation-for="Evasion" class="text-danger"></span>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Create character</button>
+    <a asp-action="Index" class="btn btn-link">Cancel</a>
+</form>

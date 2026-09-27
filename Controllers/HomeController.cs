@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using DaggerheartProject.Models;
-using Models;
 
 namespace DaggerheartProject.Controllers;
 

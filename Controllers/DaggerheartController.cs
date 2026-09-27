@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Models;
+using DaggerheartProject.Models;
 
 namespace DaggerheartProject.Controllers;
 
