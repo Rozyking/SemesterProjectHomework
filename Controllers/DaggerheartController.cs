@@ -23,4 +23,9 @@ public class DaggerheartController : Controller
         return View(character);
     }
 
+    public IActionResult Create()
+    {
+        return View();
+    }
+
 }
