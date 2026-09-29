@@ -32,6 +32,11 @@ public class DaggerheartController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Create(DaggerheartCharacter DHCharacter)
     {
+        if (!ModelState.IsValid)
+        {
+            return View(DHCharacter);
+        }
+
         DHCharacter.Id = DaggerheartCharacterData.All.Max(c => c.Id) + 1;
         DaggerheartCharacterData.All.Add(DHCharacter);
 
