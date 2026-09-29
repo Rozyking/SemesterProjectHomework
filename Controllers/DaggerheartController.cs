@@ -28,4 +28,13 @@ public class DaggerheartController : Controller
         return View();
     }
 
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Create(DaggerheartCharacter DHCharacter)
+    {
+        DHCharacter.Id = DaggerheartCharacterData.All.Max(c => c.Id) + 1;
+        DaggerheartCharacterData.All.Add(DHCharacter);
+
+        return RedirectToAction(nameof(Index));
+    }
 }
