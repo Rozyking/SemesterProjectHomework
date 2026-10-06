@@ -1,19 +1,26 @@
 using Microsoft.AspNetCore.Mvc;
 using DaggerheartProject.Models;
+using DaggerheartProject.Data;
 
 namespace DaggerheartProject.Controllers;
 
 public class DaggerheartController : Controller
 {
+    private readonly DaggerheartContext _context;
+
+    public DaggerheartController(DaggerheartContext context)
+    {
+        _context = context;
+    }
 
     public IActionResult Index()
     {
-        return View(DaggerheartCharacterData.All);
+        return View(_context.DaggerheartCharacters.ToList());
     }
 
     public IActionResult Details(int id)
     {
-        var character = DaggerheartCharacterData.All.FirstOrDefault(t => t.Id == id);
+        var character = _context.DaggerheartCharacters.FirstOrDefault(t => t.Id == id);
 
         if (character == null)
         {
@@ -37,8 +44,8 @@ public class DaggerheartController : Controller
             return View(DHCharacter);
         }
 
-        DHCharacter.Id = DaggerheartCharacterData.All.Max(c => c.Id) + 1;
-        DaggerheartCharacterData.All.Add(DHCharacter);
+        _context.DaggerheartCharacters.Add(DHCharacter);
+        _context.SaveChanges();
 
         return RedirectToAction(nameof(Index));
     }
