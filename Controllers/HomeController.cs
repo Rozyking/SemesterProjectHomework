@@ -1,14 +1,22 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using DaggerheartProject.Models;
+using DaggerheartProject.Data;
 
 namespace DaggerheartProject.Controllers;
 
 public class HomeController : Controller
 {
-    public IActionResult Index()
+    private readonly DaggerheartContext _context;
+
+    public HomeController(DaggerheartContext context)
     {
-        var spotlight = DaggerheartCharacterData.All.FirstOrDefault(c => c.Id == 1); // pick any Id
+        _context = context;
+    }
+
+    public IActionResult Index(int id)
+    {
+        var spotlight = _context.DaggerheartCharacters.FirstOrDefault(t => t.Id == 1);
         return View(spotlight);
     }
 

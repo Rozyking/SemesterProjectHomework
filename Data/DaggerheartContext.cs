@@ -5,6 +5,7 @@ namespace DaggerheartProject.Data;
 
 public class DaggerheartContext : DbContext
 {
+    
     public DaggerheartContext(DbContextOptions<DaggerheartContext> options) : base(options)
     {
 
