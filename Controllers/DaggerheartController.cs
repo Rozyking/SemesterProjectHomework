@@ -102,8 +102,42 @@ public class DaggerheartController : Controller
         return View(daggerheartCharacter);
     }
 
+    // GET: DaggerheartCharactersScaffold/Delete/5
+    public async Task<IActionResult> Delete(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+
+        var daggerheartCharacter = await _context.DaggerheartCharacters
+            .FirstOrDefaultAsync(m => m.Id == id);
+        if (daggerheartCharacter == null)
+        {
+            return NotFound();
+        }
+
+        return View(daggerheartCharacter);
+    }
+
+    // POST: DaggerheartCharactersScaffold/Delete/5
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        var daggerheartCharacter = await _context.DaggerheartCharacters.FindAsync(id);
+        if (daggerheartCharacter != null)
+        {
+            _context.DaggerheartCharacters.Remove(daggerheartCharacter);
+        }
+
+        await _context.SaveChangesAsync();
+        return RedirectToAction(nameof(Index));
+    }
+
     private bool DaggerheartCharacterExists(int id)
     {
         return _context.DaggerheartCharacters.Any(e => e.Id == id);
     }
+    
 }
