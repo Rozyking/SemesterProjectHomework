@@ -33,6 +33,17 @@
         <span asp-validation-for="Evasion" class="text-danger"></span>
     </div>
 
+    <div class="mb-3">
+        <label asp-for="LowerDamageThreshold" class="form-label"></label>
+        <input asp-for="LowerDamageThreshold" class="form-control" />
+        <span asp-validation-for="LowerDamageThreshold" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="UpperDamageThreshold" class="form-label"></label>
+        <input asp-for="UpperDamageThreshold" class="form-control" />
+        <span asp-validation-for="UpperDamageThreshold" class="text-danger"></span>
+    </div>
 
     <button type="submit" class="btn btn-primary">Create character</button>
     <a asp-action="Index" class="btn btn-link">Cancel</a>

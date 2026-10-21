@@ -72,7 +72,7 @@ public class DaggerheartController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Class,HitPoints,Evasion")] DaggerheartCharacter daggerheartCharacter)
+    public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Class,HitPoints,Evasion,LowerDamageThreshold,UpperDamageThreshold")] DaggerheartCharacter daggerheartCharacter)
     {
         if (id != daggerheartCharacter.Id)
         {
