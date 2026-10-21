@@ -16,7 +16,7 @@ namespace DaggerheartProject.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.12")
+                .HasAnnotation("ProductVersion", "10.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -40,10 +40,16 @@ namespace DaggerheartProject.Migrations
                     b.Property<int>("HitPoints")
                         .HasColumnType("int");
 
+                    b.Property<int>("LowerDamageThreshold")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
+
+                    b.Property<int>("UpperDamageThreshold")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -56,7 +62,9 @@ namespace DaggerheartProject.Migrations
                             Class = "Warrior",
                             Evasion = 11,
                             HitPoints = 6,
-                            Name = "Chug Fligadoo"
+                            LowerDamageThreshold = 10,
+                            Name = "Chug Fligadoo",
+                            UpperDamageThreshold = 17
                         },
                         new
                         {
@@ -64,7 +72,9 @@ namespace DaggerheartProject.Migrations
                             Class = "Druid",
                             Evasion = 10,
                             HitPoints = 6,
-                            Name = "Norman Chesnut"
+                            LowerDamageThreshold = 8,
+                            Name = "Norman Chesnut",
+                            UpperDamageThreshold = 15
                         },
                         new
                         {
@@ -72,7 +82,9 @@ namespace DaggerheartProject.Migrations
                             Class = "Wizard",
                             Evasion = 11,
                             HitPoints = 5,
-                            Name = "Ena"
+                            LowerDamageThreshold = 7,
+                            Name = "Ena",
+                            UpperDamageThreshold = 14
                         },
                         new
                         {
@@ -80,7 +92,9 @@ namespace DaggerheartProject.Migrations
                             Class = "Rogue",
                             Evasion = 12,
                             HitPoints = 6,
-                            Name = "Rusty Peters"
+                            LowerDamageThreshold = 19,
+                            Name = "Rusty Peters",
+                            UpperDamageThreshold = 15
                         },
                         new
                         {
@@ -88,7 +102,9 @@ namespace DaggerheartProject.Migrations
                             Class = "Seraph",
                             Evasion = 9,
                             HitPoints = 7,
-                            Name = "Jebadiah Jemsen"
+                            LowerDamageThreshold = 10,
+                            Name = "Jebadiah Jemsen",
+                            UpperDamageThreshold = 16
                         },
                         new
                         {
@@ -96,7 +112,9 @@ namespace DaggerheartProject.Migrations
                             Class = "Guardian",
                             Evasion = 9,
                             HitPoints = 7,
-                            Name = "Charles Limburger"
+                            LowerDamageThreshold = 12,
+                            Name = "Charles Limburger",
+                            UpperDamageThreshold = 19
                         });
                 });
 #pragma warning restore 612, 618
