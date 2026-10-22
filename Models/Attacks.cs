@@ -7,6 +7,10 @@ public class Attacks
 {
     public int Id { get; set; }
 
+    [Required(ErrorMessage = "Attack must have a name")]
+    [StringLength(30, MinimumLength = 2)]
+    public string Name { get; set; } = "";
+
     [Required(ErrorMessage = "Each attack has a type (physical or magic)")]
     [StringLength(20, MinimumLength = 5)]
     public string Type { get; set; } = "";
@@ -15,7 +19,7 @@ public class Attacks
     [Range(1, 20)]
     public int DiceRoll { get; set; }
 
-    [Range(1,10)]
+    [Range(-3,10)]
     public int? Modifier { get; set; }
 
     public string? Effects { get; set; } = "";

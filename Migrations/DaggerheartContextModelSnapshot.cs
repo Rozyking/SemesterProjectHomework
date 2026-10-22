@@ -41,6 +41,11 @@ namespace DaggerheartProject.Migrations
                     b.Property<int?>("Modifier")
                         .HasColumnType("int");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -51,6 +56,68 @@ namespace DaggerheartProject.Migrations
                     b.HasIndex("DaggerheartCharacterId");
 
                     b.ToTable("Attacks");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DaggerheartCharacterId = 1,
+                            DiceRoll = 8,
+                            Effects = "",
+                            Modifier = 1,
+                            Name = "Sword",
+                            Type = "Physical"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DaggerheartCharacterId = 3,
+                            DiceRoll = 6,
+                            Effects = "",
+                            Modifier = 1,
+                            Name = "Bow",
+                            Type = "Physical"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DaggerheartCharacterId = 2,
+                            DiceRoll = 10,
+                            Effects = "Sets target on fire",
+                            Modifier = 2,
+                            Name = "Fireball",
+                            Type = "Magic"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DaggerheartCharacterId = 3,
+                            DiceRoll = 4,
+                            Effects = "",
+                            Modifier = 0,
+                            Name = "Unarmed",
+                            Type = "Physical"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DaggerheartCharacterId = 4,
+                            DiceRoll = 10,
+                            Effects = "",
+                            Modifier = 1,
+                            Name = "Magic Gauntlets",
+                            Type = "Magic"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DaggerheartCharacterId = 5,
+                            DiceRoll = 6,
+                            Effects = "Can be used as secondary weapon",
+                            Modifier = 0,
+                            Name = "Dagger",
+                            Type = "Physical"
+                        });
                 });
 
             modelBuilder.Entity("DaggerheartProject.Models.DaggerheartCharacter", b =>

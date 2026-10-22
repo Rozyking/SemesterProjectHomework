@@ -24,5 +24,14 @@ public class DaggerheartContext : DbContext
             new DaggerheartCharacter { Id = 5, Name = "Jebadiah Jemsen", Class = "Seraph", HitPoints = 7, Evasion = 9, LowerDamageThreshold = 10, UpperDamageThreshold = 16 },
             new DaggerheartCharacter { Id = 6, Name = "Charles Limburger", Class = "Guardian", HitPoints = 7, Evasion = 9, LowerDamageThreshold = 12, UpperDamageThreshold = 19 }
         );
+
+        modelBuilder.Entity<Attacks>().HasData(
+            new Attacks {Id = 1, DaggerheartCharacterId = 1, Name = "Sword", Type = "Physical", DiceRoll = 8, Modifier = 1, Effects = ""},
+            new Attacks {Id = 2, DaggerheartCharacterId = 3, Name = "Bow", Type = "Physical", DiceRoll = 6, Modifier = 1, Effects = ""},
+            new Attacks {Id = 3, DaggerheartCharacterId = 2, Name = "Fireball", Type = "Magic", DiceRoll = 10, Modifier = 2, Effects = "Sets target on fire"},
+            new Attacks {Id = 4, DaggerheartCharacterId = 3, Name = "Unarmed", Type = "Physical", DiceRoll = 4, Modifier = 0, Effects = ""},
+            new Attacks {Id = 5, DaggerheartCharacterId = 4, Name = "Magic Gauntlets", Type = "Magic", DiceRoll = 10, Modifier = 1, Effects = ""},
+            new Attacks {Id = 6, DaggerheartCharacterId = 5, Name = "Dagger", Type = "Physical", DiceRoll = 6, Modifier = 0, Effects = "Can be used as secondary weapon"}
+        );
     }
 }

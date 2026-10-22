@@ -8,3 +8,23 @@
 <p>HP: @Model.HitPoints</p>
 <p>Evasion: @Model.Evasion</p>
 <p>Lower Damage Threshold: @Model.LowerDamageThreshold / Upper Damage Threshold: @Model.UpperDamageThreshold</p>
+
+<h2 class="h5 mt-4">On the menu</h2>
+
+@if (Model.Attacks.Count > 0)
+{
+    <ul class="list-group mb-4">
+        @foreach (var attack in Model.Attacks)
+        {
+            <li class="list-group-item d-flex justify-content-between">
+                <span>@attack.Name <span class="text-muted">· @attack.Type</span></span>
+                <span>d@attack.DiceRoll + @attack.Modifier</span>
+                <span>@attack.Effects</span>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p class="text-muted">Nothing listed.</p>
+}

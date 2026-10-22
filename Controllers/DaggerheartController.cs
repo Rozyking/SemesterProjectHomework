@@ -16,12 +16,12 @@ public class DaggerheartController : Controller
 
     public IActionResult Index()
     {
-        return View(_context.DaggerheartCharacters.ToList());
+        return View(_context.DaggerheartCharacters.Include(t => t.Attacks).ToList());
     }
 
     public IActionResult Details(int id)
     {
-        var character = _context.DaggerheartCharacters.FirstOrDefault(t => t.Id == id);
+        var character = _context.DaggerheartCharacters.Include(t => t.Attacks).FirstOrDefault(t => t.Id == id);
 
         if (character == null)
         {
