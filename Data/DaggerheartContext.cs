@@ -12,6 +12,7 @@ public class DaggerheartContext : DbContext
     }
 
     public DbSet<DaggerheartCharacter> DaggerheartCharacters => Set<DaggerheartCharacter>();
+    public DbSet<Attacks> Attacks => Set<Attacks>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

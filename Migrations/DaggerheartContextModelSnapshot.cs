@@ -21,6 +21,38 @@ namespace DaggerheartProject.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("DaggerheartProject.Models.Attacks", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DaggerheartCharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DiceRoll")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Effects")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Modifier")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DaggerheartCharacterId");
+
+                    b.ToTable("Attacks");
+                });
+
             modelBuilder.Entity("DaggerheartProject.Models.DaggerheartCharacter", b =>
                 {
                     b.Property<int>("Id")
@@ -116,6 +148,22 @@ namespace DaggerheartProject.Migrations
                             Name = "Charles Limburger",
                             UpperDamageThreshold = 19
                         });
+                });
+
+            modelBuilder.Entity("DaggerheartProject.Models.Attacks", b =>
+                {
+                    b.HasOne("DaggerheartProject.Models.DaggerheartCharacter", "daggerheartCharacter")
+                        .WithMany("Attacks")
+                        .HasForeignKey("DaggerheartCharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("daggerheartCharacter");
+                });
+
+            modelBuilder.Entity("DaggerheartProject.Models.DaggerheartCharacter", b =>
+                {
+                    b.Navigation("Attacks");
                 });
 #pragma warning restore 612, 618
         }
