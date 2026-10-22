@@ -29,5 +29,7 @@ public class DaggerheartCharacter
     [Required(ErrorMessage = "Enter upper damage threshold for character.")]
     [Range(2, 40)]
     public int UpperDamageThreshold { get; set; }
+
+    public ICollection<Attacks> Attacks { get; set; } = new List<Attacks>();
     
 }
