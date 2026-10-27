@@ -18,7 +18,7 @@
         {
             <li class="list-group-item d-flex justify-content-between">
                 <span>@attack.Name <span class="text-muted">· @attack.Type</span></span>
-                <span>d@attack.DiceRoll + @attack.Modifier</span>
+                <span>d @attack.DiceRoll + @attack.Modifier</span>
                 <span>@attack.Effects</span>
             </li>
         }
@@ -28,3 +28,6 @@ else
 {
     <p class="text-muted">Nothing listed.</p>
 }
+
+<a asp-controller="Attacks" asp-action="Create" asp-route-characterId="@Model.Id"
+   class="btn btn-primary">Add attack</a>

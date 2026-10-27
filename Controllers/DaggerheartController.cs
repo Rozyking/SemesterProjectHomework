@@ -20,16 +20,18 @@ public class DaggerheartController : Controller
     }
 
     public IActionResult Details(int id)
+{
+    var character = _context.DaggerheartCharacters
+        .Include(t => t.Attacks)
+        .FirstOrDefault(t => t.Id == id);
+
+    if (character == null)
     {
-        var character = _context.DaggerheartCharacters.Include(t => t.Attacks).FirstOrDefault(t => t.Id == id);
-
-        if (character == null)
-        {
-            return NotFound();  // Honest 404 from bad index
-        }
-
-        return View(character);
+        return NotFound();
     }
+
+    return View(character);
+}
 
     public IActionResult Create()
     {
@@ -139,5 +141,5 @@ public class DaggerheartController : Controller
     {
         return _context.DaggerheartCharacters.Any(e => e.Id == id);
     }
-    
+
 }

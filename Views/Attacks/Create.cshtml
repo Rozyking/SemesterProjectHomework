@@ -1,0 +1,56 @@
+@model DaggerheartProject.ViewModels.CharacterAttacksViewModel
+
+@{
+    ViewData["Title"] = "Add Attack";
+}
+
+<h1>Add Attack</h1>
+
+<form asp-action="Create" method="post" class="col-md-6">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="Attack.DaggerheartCharacterId" class="form-label"></label>
+        <select asp-for="Attack.DaggerheartCharacterId" asp-items="Model.Characters" class="form-select">
+            <option value="">-- Choose a character --</option>
+        </select>
+        <span asp-validation-for="Attack.DaggerheartCharacterId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Attack.Name" class="form-label"></label>
+        <input asp-for="Attack.Name" class="form-control" />
+        <span asp-validation-for="Attack.Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Attack.Type" class="form-label"></label>
+        <input asp-for="Attack.Type" class="form-control" placeholder="physical or magic" />
+        <span asp-validation-for="Attack.Type" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Attack.DiceRoll" class="form-label"></label>
+        <input asp-for="Attack.DiceRoll" class="form-control" />
+        <span asp-validation-for="Attack.DiceRoll" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Attack.Modifier" class="form-label"></label>
+        <input asp-for="Attack.Modifier" class="form-control" />
+        <span asp-validation-for="Attack.Modifier" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Attack.Effects" class="form-label"></label>
+        <textarea asp-for="Attack.Effects" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Attack.Effects" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add attack</button>
+    <a asp-controller="Daggerheart" asp-action="Index" class="btn btn-link">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
