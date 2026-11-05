@@ -14,6 +14,11 @@ public class HomeController : Controller
         _context = context;
     }
 
+    public IActionResult Missing()
+    {
+        return View();
+    }
+
     public IActionResult Index(int id)
     {
         var spotlight = _context.DaggerheartCharacters.FirstOrDefault(t => t.Id == 1);

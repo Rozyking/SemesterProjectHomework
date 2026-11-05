@@ -16,6 +16,11 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
 }
+
+// A wrong id, or a URL nobody recognizes, used to be a blank browser page.
+// This re-runs the request through /Home/Missing and keeps the 404 status.
+app.UseStatusCodePagesWithReExecute("/Home/Missing");
+
 app.UseRouting();
 
 app.UseAuthorization();
