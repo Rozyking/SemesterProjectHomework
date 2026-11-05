@@ -9,16 +9,19 @@
 <p>Evasion: @Model.Evasion</p>
 <p>Lower Damage Threshold: @Model.LowerDamageThreshold / Upper Damage Threshold: @Model.UpperDamageThreshold</p>
 
-<h2 class="h5 mt-4">On the menu</h2>
+<h2 class="h5 mt-4">Attacks</h2>
 
 @if (Model.Attacks.Count > 0)
 {
     <ul class="list-group mb-4">
         @foreach (var attack in Model.Attacks)
         {
+            var mod = attack.Modifier ?? 0;
+            var modText = mod == 0 ? "" : (mod > 0 ? $" +{mod}" : $" {mod}");
+
             <li class="list-group-item d-flex justify-content-between">
                 <span>@attack.Name <span class="text-muted">· @attack.Type</span></span>
-                <span>d @attack.DiceRoll + @attack.Modifier</span>
+                <span>d@(attack.DiceRoll)@modText</span>
                 <span>@attack.Effects</span>
             </li>
         }
@@ -31,3 +34,6 @@ else
 
 <a asp-controller="Attacks" asp-action="Create" asp-route-characterId="@Model.Id"
    class="btn btn-primary">Add attack</a>
+
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-secondary ms-2">Edit character</a>
+<a asp-action="Index" class="btn btn-link">Back to party</a>

@@ -23,6 +23,12 @@
                 <partial name="_CharacterCard" model="Model" />
             </div>
         </div>
+    } else
+    {
+        <p class="text-muted">
+            Your party is empty. <a asp-controller="Daggerheart" asp-action="Create">Add your first character</a>
+            and they'll be spotlighted here.
+        </p>
     }
     
 </div>

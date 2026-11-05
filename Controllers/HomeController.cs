@@ -21,7 +21,9 @@ public class HomeController : Controller
 
     public IActionResult Index(int id)
     {
-        var spotlight = _context.DaggerheartCharacters.FirstOrDefault(t => t.Id == 1);
+        var spotlight = _context.DaggerheartCharacters
+        .OrderBy(c => c.Id)
+        .FirstOrDefault();
         return View(spotlight);
     }
 
