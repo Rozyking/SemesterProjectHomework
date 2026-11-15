@@ -1,5 +1,7 @@
 using DaggerheartProject.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using DaggerheartProject.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,10 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<DaggerheartContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Identity: the users, and the cookie that remembers who is signed in.
+builder.Services.AddIdentity<AppUser, IdentityRole>()
+    .AddEntityFrameworkStores<DaggerheartContext>();
 
 var app = builder.Build();
 
@@ -22,6 +28,8 @@ if (!app.Environment.IsDevelopment())
 app.UseStatusCodePagesWithReExecute("/Home/Missing");
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using DaggerheartProject.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace DaggerheartProject.Data;
 
-public class DaggerheartContext : DbContext
+public class DaggerheartContext : IdentityDbContext<AppUser>
 {
     
     public DaggerheartContext(DbContextOptions<DaggerheartContext> options) : base(options)
@@ -16,6 +17,8 @@ public class DaggerheartContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<DaggerheartCharacter>().HasData(
             new DaggerheartCharacter { Id = 1, Name = "Chug Fligadoo", Class = "Warrior", HitPoints = 6, Evasion = 11, LowerDamageThreshold = 10, UpperDamageThreshold = 17 },
             new DaggerheartCharacter { Id = 2, Name = "Norman Chesnut", Class = "Druid", HitPoints = 6, Evasion = 10, LowerDamageThreshold = 8, UpperDamageThreshold = 15 },
