@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using DaggerheartProject.Models;
 using DaggerheartProject.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DaggerheartProject.Controllers;
 
+[Authorize]
 public class DaggerheartController : Controller
 {
     private readonly DaggerheartContext _context;
@@ -14,24 +16,26 @@ public class DaggerheartController : Controller
         _context = context;
     }
 
+    [AllowAnonymous]
     public IActionResult Index()
     {
         return View(_context.DaggerheartCharacters.Include(t => t.Attacks).ToList());
     }
 
+    [AllowAnonymous]
     public IActionResult Details(int id)
-{
-    var character = _context.DaggerheartCharacters
-        .Include(t => t.Attacks)
-        .FirstOrDefault(t => t.Id == id);
-
-    if (character == null)
     {
-        return NotFound();
-    }
+        var character = _context.DaggerheartCharacters
+            .Include(t => t.Attacks)
+            .FirstOrDefault(t => t.Id == id);
 
-    return View(character);
-}
+        if (character == null)
+        {
+            return NotFound();
+        }
+
+        return View(character);
+    }
 
     public IActionResult Create()
     {

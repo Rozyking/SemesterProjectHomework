@@ -1,8 +1,13 @@
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<AppUser> UserManager
+
 <ul class="navbar-nav align-items-sm-center">
 @if (User.Identity?.IsAuthenticated == true)
 {
+    var user = await UserManager.GetUserAsync(User);
+    var name = string.IsNullOrEmpty(user?.PlayerName) ? User.Identity.Name : user.PlayerName;
     <li class="nav-item">
-        <span class="navbar-text me-2">Signed in as @User.Identity.Name</span>
+        <span class="navbar-text me-2">Signed in as @name</span>
     </li>
     <li class="nav-item">
         <form asp-controller="Account" asp-action="Logout" method="post">

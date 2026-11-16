@@ -15,6 +15,12 @@
     </div>
 
     <div class="mb-3">
+        <label asp-for="PlayerName" class="form-label"></label>
+        <input asp-for="PlayerName" class="form-control" />
+        <span asp-validation-for="PlayerName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
         <label asp-for="Password" class="form-label"></label>
         <input asp-for="Password" class="form-control" autocomplete="new-password" />
         <span asp-validation-for="Password" class="text-danger"></span>

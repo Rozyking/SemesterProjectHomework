@@ -11,6 +11,11 @@ public class RegisterViewModel
     public string Email { get; set; } = "";
 
     [Required]
+    [Display(Name = "What should we call you?")]
+    [StringLength(40, MinimumLength = 2)]
+    public string PlayerName { get; set; } = "";
+
+    [Required]
     [DataType(DataType.Password)]
     public string Password { get; set; } = "";
 
