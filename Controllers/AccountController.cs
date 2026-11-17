@@ -74,6 +74,11 @@ public class AccountController : Controller
         return LocalRedirect(returnUrl ?? "/");
     }
 
+    public IActionResult AccessDenied()
+    {
+        return View();
+    }
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Logout()
