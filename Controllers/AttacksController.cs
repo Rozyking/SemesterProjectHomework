@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using DaggerheartProject.Data;
 using DaggerheartProject.Models;
 using DaggerheartProject.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DaggerheartProject.Controllers;
 
+[Authorize(Roles = "DungeonMaster")]
 public class AttacksController : Controller
 {
     private readonly DaggerheartContext _context;
