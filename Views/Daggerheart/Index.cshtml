@@ -6,7 +6,10 @@
 
 <p>@Model.Count @(Model.Count == 1 ? "character" : "characters") in party.</p>
 
+@if (User.IsInRole("DungeonMaster"))
+{
 <a asp-action="Create" class="btn btn-primary mb-3">+ Add a character</a>
+}
 
 @if (!Model.Any())
 {

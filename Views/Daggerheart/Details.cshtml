@@ -32,8 +32,10 @@ else
     <p class="text-muted">No attacks for this character</p>
 }
 
+@if (User.IsInRole("DungeonMaster"))
+{
 <a asp-controller="Attacks" asp-action="Create" asp-route-characterId="@Model.Id"
    class="btn btn-primary">Add attack</a>
-
 <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-secondary ms-2">Edit character</a>
+}
 <a asp-action="Index" class="btn btn-link">Back to party</a>

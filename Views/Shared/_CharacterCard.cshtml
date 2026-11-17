@@ -1,4 +1,3 @@
-
 @model DaggerheartCharacter
 
 <div class="card character-card h-100 mb-3">
@@ -6,11 +5,17 @@
         <h5 class="card-title">@Model.Name</h5>
         <h6 class="card-subtitle mb-2 text-muted">@Model.Class</h6>
         <p class="card-text">Hit Points: @Model.HitPoints · Evasion: @Model.Evasion</p>
-        <p class="card-text">Lower Damage Threshold: @Model.LowerDamageThreshold / Upper Damage Threshold: @Model.UpperDamageThreshold</p>
+        <p class="card-text">Lower Damage Threshold: @Model.LowerDamageThreshold / Upper Damage Threshold:
+            @Model.UpperDamageThreshold</p>
+        </div>
+        <div class="card-footer">
+            <a href="/Daggerheart/Details/@Model.Id">Details</a>
+
+            @if (User.IsInRole("DungeonMaster"))
+            {
+                <a href="/Daggerheart/Edit/@Model.Id" class="ms-3">Edit</a>
+                <a asp-controller="Daggerheart" asp-action="Delete" asp-route-id="@Model.Id"
+                   class="btn btn-outline-danger ms-3">Remove character</a>
+            }
+        </div>
     </div>
-    <div class="card-footer">
-        <a href="/Daggerheart/Details/@Model.Id">Details</a>
-        <a href="/Daggerheart/Edit/@Model.Id" class="ms-3">Edit</a>
-        <a asp-controller="Daggerheart" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger ms-3">Remove character</a>
-    </div>
-</div>
