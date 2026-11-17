@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace DaggerheartProject.Controllers;
 
-[Authorize]
+[Authorize(Roles = "DungeonMaster")]
 public class DaggerheartController : Controller
 {
     private readonly DaggerheartContext _context;
