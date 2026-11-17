@@ -17,6 +17,12 @@ builder.Services.AddIdentity<AppUser, IdentityRole>()
 
 var app = builder.Build();
 
+// Week 12: the Admin role, and who holds it. Runs once, at startup.
+using (var scope = app.Services.CreateScope())
+{
+    await RoleSeeder.SeedAsync(scope.ServiceProvider);
+}
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
