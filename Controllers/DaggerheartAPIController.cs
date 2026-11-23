@@ -23,4 +23,20 @@ public class DaggerheartApiController : ControllerBase
     {
         return await _context.DaggerheartCharacters.ToListAsync();
     }
+
+    // GET /api/Daggerheart/2
+    [HttpGet("{id:int}")]
+    public async Task<ActionResult<DaggerheartCharacter>> GetOne(int id)
+    {
+        var character = await _context.DaggerheartCharacters
+            .Include(c => c.Attacks)
+            .FirstOrDefaultAsync(t => t.Id == id);
+
+        if (character == null)
+        {
+            return NotFound();
+        }
+
+        return character;
+    }
 }
