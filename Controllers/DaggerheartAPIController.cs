@@ -4,12 +4,14 @@ using DaggerheartProject.Data;
 using DaggerheartProject.Models;
 using DaggerheartProject.ViewModels;
 using DaggerheartProject.Dtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DaggerheartProject.Controllers;
 
 // Week 13: same as DaggerheartController but answers in JSON.
 [ApiController]
 [Route("api/Daggerheart")]
+[Authorize(Roles = "DungeonMaster")]
 public class DaggerheartApiController : ControllerBase
 {
     private readonly DaggerheartContext _context;
@@ -20,6 +22,7 @@ public class DaggerheartApiController : ControllerBase
     }
 
     // GET /api/Daggerheart
+    [AllowAnonymous]
     [HttpGet]
     public async Task<List<CharacterDto>> GetAll()
     {
@@ -31,6 +34,7 @@ public class DaggerheartApiController : ControllerBase
     }
 
     // GET /api/Daggerheart/2
+    [AllowAnonymous]
     [HttpGet("{id:int}")]
     public async Task<ActionResult<CharacterDto>> GetOne(int id)
     {

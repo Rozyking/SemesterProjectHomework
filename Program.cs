@@ -29,9 +29,10 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
 }
 
-// A wrong id, or a URL nobody recognizes, used to be a blank browser page.
-// This re-runs the request through /Home/Missing and keeps the 404 status.
-app.UseStatusCodePagesWithReExecute("/Home/Missing");
+// Week 13: pages only. Under /api, a status is the whole answer, and a page
+// of HTML in the body is no use to a program.
+app.UseWhen(context => !context.Request.Path.StartsWithSegments("/api"), pages =>
+    pages.UseStatusCodePagesWithReExecute("/Home/Missing"));
 
 app.UseRouting();
 
