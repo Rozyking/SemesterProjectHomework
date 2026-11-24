@@ -46,6 +46,28 @@ public class DaggerheartApiController : ControllerBase
         return ToDto(character);
     }
 
+    // POST /api/trucks
+    // [ApiController] has already refused anything that breaks CharacterInput's
+    // rules, with a 400, so there is no ModelState check here
+    [HttpPost]
+    public async Task<ActionResult<CharacterDto>> Create(CharacterInput input)
+    {
+        var character = new DaggerheartCharacter
+        {
+            Name = input.Name,
+            Class = input.Class,
+            HitPoints = input.HitPoints,
+            Evasion = input.Evasion,
+            LowerDamageThreshold = input.LowerDamageThreshold,
+            UpperDamageThreshold = input.UpperDamageThreshold
+        };
+
+        _context.DaggerheartCharacters.Add(character);
+        await _context.SaveChangesAsync();
+
+        return CreatedAtAction(nameof(GetOne), new { id = character.Id }, ToDto(character));
+    }
+
     private static CharacterDto ToDto(DaggerheartCharacter character) => new CharacterDto
     {
         Id = character.Id,
