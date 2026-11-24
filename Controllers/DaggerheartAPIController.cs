@@ -46,7 +46,7 @@ public class DaggerheartApiController : ControllerBase
         return ToDto(character);
     }
 
-    // POST /api/trucks
+    // POST /api/Daggerheart
     // [ApiController] has already refused anything that breaks CharacterInput's
     // rules, with a 400, so there is no ModelState check here
     [HttpPost]
@@ -66,6 +66,42 @@ public class DaggerheartApiController : ControllerBase
         await _context.SaveChangesAsync();
 
         return CreatedAtAction(nameof(GetOne), new { id = character.Id }, ToDto(character));
+    }
+
+    // PUT /api/Daggerheart/2
+    [HttpPut("{id:int}")]
+    public async Task<IActionResult> Update(int id, CharacterInput input)
+    {
+        var character = await _context.DaggerheartCharacters.FindAsync(id);
+        if (character == null)
+        {
+            return NotFound();
+        }
+
+        character.Name = input.Name;
+        character.Class = input.Class;
+        character.HitPoints = input.HitPoints;
+        character.Evasion = input.Evasion;
+        character.LowerDamageThreshold = input.LowerDamageThreshold;
+        character.UpperDamageThreshold = input.UpperDamageThreshold;
+
+        await _context.SaveChangesAsync();
+        return NoContent();
+    }
+
+    // DELETE /api/Daggerheart/2
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var character = await _context.DaggerheartCharacters.FindAsync(id);
+        if (character == null)
+        {
+            return NotFound();
+        }
+
+        _context.DaggerheartCharacters.Remove(character);
+        await _context.SaveChangesAsync();
+        return NoContent();
     }
 
     private static CharacterDto ToDto(DaggerheartCharacter character) => new CharacterDto
