@@ -8,6 +8,6 @@ public class AttackDto
     public string Type {get; set;} = "";
 
     public int DiceRoll {get; set;}
-    public int Modifier {get; set;}
-    public string Effects {get; set;} = "";
+    public int? Modifier {get; set;}
+    public string? Effects {get; set;} = "";
 }

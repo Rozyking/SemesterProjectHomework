@@ -48,7 +48,7 @@ app.MapControllerRoute(
 
 // Week 13: minimal API endpoint. The same kind of answer as a controller action in one statement
 // with no class around it
-app.MapGet("/api/Dagggerheart/count", async (DaggerheartContext db) =>
+app.MapGet("/api/Daggerheart/count", async (DaggerheartContext db) =>
     new { count = await db.DaggerheartCharacters.CountAsync() });
 
 app.Run();
